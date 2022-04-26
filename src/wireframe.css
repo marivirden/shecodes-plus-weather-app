@@ -1,0 +1,14 @@
+body {
+  max-width: 600px;
+}
+form {
+  margin: 15px 20px;
+}
+.row .col-2 {
+  text-align: center;
+}
+
+.circular-border {
+  border-radius: 60%;
+  color: #fe7e6d;
+}
