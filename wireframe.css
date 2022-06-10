@@ -1,5 +1,31 @@
 body {
   max-width: 600px;
+  margin: 80px auto;
+  padding: 20px;
+  border: 1px solid #dadce0;
+  border-radius: 15px;
+}
+#ciudad {
+  text-align: center;
+  color: #202124;
+  font-size: 22px;
+  font-family: Google Sans, Roboto, arial, sans-serif;
+  font-weight: 400;
+  line-height: 26px;
+}
+#date {
+  text-align: center;
+  color: #70757a;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: Roboto, arial, sans-serif;
+}
+img {
+  display: inline-block;
+  height: auto;
+  margin-top: unset;
+  vertical-align: top;
+  width: 100px;
 }
 form {
   margin: 15px 20px;
