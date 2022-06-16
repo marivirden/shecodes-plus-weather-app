@@ -13,85 +13,87 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <form>
-      <div class="input-group mb-3">
-        <input
-          id="city-search-box"
-          type="text"
-          class="form-control"
-          placeholder="Search"
-          aria-label="Search"
-          aria-describedby="button-addon2"
-        />
-        <button
-          class="btn btn-outline-secondary"
-          type="button"
-          id="button-addon2"
-        >
-          Search
-        </button>
-      </div>
-    </form>
-    <div class="border border-dark m-4 p-4">
-      <div class="row">
-        <div class="col-6 p-4">
-          <h2 id="ciudad">Austin, TX</h2>
-          <h3 id="date">Tuesday Jan 17 2020 - 17:00</h3>
-          <img
-            src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-            alt="clear"
+    <div id="wrapper">
+      <form>
+        <div class="input-group mb-3">
+          <input
+            id="city-search-box"
+            type="text"
+            class="form-control"
+            placeholder="Search"
+            aria-label="Search"
+            aria-describedby="button-addon2"
           />
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+          >
+            Search
+          </button>
         </div>
-        <div class="col-6 mt-4">
-          <div class="p-4 border border-dark">
-            <h2>Today's weather</h2>
-            <h3 id="current-temperature"></h3>
-            <div class="col-6">
-              <ul>
-                <li>Precipitation 0%</li>
-                <li>Humidity 0%</li>
-                <li>Wind 0 m/hr</li>
-              </ul>
+      </form>
+      <div class="border border-dark m-4 p-4">
+        <div class="row">
+          <div class="col-6 p-4">
+            <h2 id="ciudad">Austin, TX, USA</h2>
+            <h3 id="date">Tuesday Jan 17 2020 - 17:00</h3>
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+              alt="clear"
+            />
+          </div>
+          <div class="col-6 mt-4">
+            <div class="p-4 border border-dark">
+              <h2 id="current-temperature">Today's weather</h2>
+              <!-- <h3 id="current-temperature"></h3> -->
+              <div class="col-6">
+                <ul id="list">
+                  <li>Precipitation 0%</li>
+                  <li>Humidity 0%</li>
+                  <li>Wind 0 m/hr</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
+        <div class="row mt-4">
+          <div class="col-2">
+            <div class="border border-dark circular-border">30 F</div>
+            <div>Tue.</div>
+          </div>
+          <div class="col-2">
+            <div class="border border-dark circular-border">30 F</div>
+            <div>Wed.</div>
+          </div>
+          <div class="col-2">
+            <div class="border border-dark circular-border">30 F</div>
+            <div>Thurs.</div>
+          </div>
+          <div class="col-2">
+            <div class="border border-dark circular-border">30 F</div>
+            <div>Fri.</div>
+          </div>
+          <div class="col-2">
+            <div class="border border-dark circular-border">30 F</div>
+            <div>Sat.</div>
+          </div>
+          <div class="col-2">
+            <div class="border border-dark circular-border">30 F</div>
+            <div>Sun.</div>
+          </div>
+        </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-2">
-          <div class="border border-dark circular-border">30 F</div>
-          <div>Tue.</div>
-        </div>
-        <div class="col-2">
-          <div class="border border-dark circular-border">30 F</div>
-          <div>Wed.</div>
-        </div>
-        <div class="col-2">
-          <div class="border border-dark circular-border">30 F</div>
-          <div>Thurs.</div>
-        </div>
-        <div class="col-2">
-          <div class="border border-dark circular-border">30 F</div>
-          <div>Fri..</div>
-        </div>
-        <div class="col-2">
-          <div class="border border-dark circular-border">30 F</div>
-          <div>Sat.</div>
-        </div>
-        <div class="col-2">
-          <div class="border border-dark circular-border">30 F</div>
-          <div>Sun.</div>
-        </div>
-      </div>
+      <small>
+        <a
+          href="https://github.com/marivirden/shecodes-plus-weather-app"
+          target="_blank"
+        >
+          Open Source Code
+        </a>
+        by: Marianna Virden
+      </small>
     </div>
-    <small>
-      <a
-        href="https://github.com/marivirden/shecodes-plus-weather-app"
-        target="_blank"
-      >
-        Open Source Code
-      </a>
-      by: Marianna Virden
-    </small>
   </body>
   <script src="wireframe.js"></script>
 </html>
