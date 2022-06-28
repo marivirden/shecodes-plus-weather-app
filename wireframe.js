@@ -13,10 +13,13 @@ function getCurrentTemperature(cityName) {
     const humidity = Math.round(response.data.main.humidity);
     const windElement = document.querySelector("#wind");
     const wind = Math.round(response.data.wind.speed);
+    const descriptionElement = document.querySelector("#description");
+    const description = response.data.weather[0].description;
 
     temperatureElement.innerHTML = `${temperature}°F`;
     humidityElement.innerHTML = `${humidity}%`;
     windElement.innerHTML = `${wind}m/hr`;
+    descriptionElement.innerHTML = `${description}`;
   }
 
   axios.get(apiUrl).then(showTemperature);

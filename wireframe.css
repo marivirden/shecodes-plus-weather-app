@@ -12,12 +12,19 @@ body {
   text-align: center;
   color: #202124;
   font-size: 30px;
-
   font-weight: 400;
   line-height: 26px;
 }
 #date {
   text-align: center;
+  color: #70757a;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+#description {
+  text-align: center;
+  text-transform: capitalize;
   color: #70757a;
   font-size: 16px;
   line-height: 20px;
