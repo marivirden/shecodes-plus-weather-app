@@ -5,9 +5,15 @@ function getCurrentTemperature(cityName) {
   function showTemperature(response) {
     console.log(response);
 
-    const temperature = Math.round(response.data.main.temp);
     const temperatureElement = document.querySelector("#current-temperature");
+    const cityElement = document.querySelector("#ciudad");
+    const temperature = Math.round(response.data.main.temp);
+    cityElement.innerHTML = response.data.name;
+    const humidityElement = document.querySelector("#humidity");
+    const humidity = Math.round(response.data.main.humidity);
+
     temperatureElement.innerHTML = `${temperature}°F`;
+    humidityElement.innerHTML = `${humidity}%`;
   }
 
   axios.get(apiUrl).then(showTemperature);
@@ -27,41 +33,40 @@ function getCity() {
 const button = document.querySelector("#button-addon2");
 button.addEventListener("click", getCity);
 
-const now = new Date();
-console.log(now);
-console.log(now.getHours());
-console.log(now.getMinutes());
-console.log(now.getSeconds());
-console.log(now.getDay());
-console.log(now.getFullYear());
-console.log(now.getMonth());
+// const now = new Date();
+// console.log(now);
+// console.log(now.getHours());
+// console.log(now.getMinutes());
+// console.log(now.getSeconds());
+// console.log(now.getDay());
+// console.log(now.getFullYear());
+// console.log(now.getMonth());
 
-let h3 = document.querySelector("#date");
+// // let h3 = document.querySelector("#date");
 
-const date = now.getDate();
-const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
-const day = days[now.getDay()];
-const year = now.getFullYear();
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-const month = months[now.getMonth()];
-const hours = now.getHours();
-const minutes = now.getMinutes();
+// const date = now.getDate();
+// const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+// const day = days[now.getDay()];
+// const year = now.getFullYear();
+// const months = [
+//   "Jan",
+//   "Feb",
+//   "Mar",
+//   "Apr",
+//   "May",
+//   "Jun",
+//   "Jul",
+//   "Aug",
+//   "Sep",
+//   "Oct",
+//   "Nov",
+//   "Dec",
+// ];
+// const month = months[now.getMonth()];
+// const hours = now.getHours();
+// const minutes = now.getMinutes();
 
-// I found my answer at https://stackoverflow.com/a/18889674
-const hoursWithLeadingZeroIfNecessary = ("0" + hours).slice(-2);
-const minutesWithLeadingZeroIfNecessary = ("0" + minutes).slice(-2);
+// const hoursWithLeadingZeroIfNecessary = ("0" + hours).slice(-2);
+// const minutesWithLeadingZeroIfNecessary = ("0" + minutes).slice(-2);
 
-h3.innerHTML = `${day}, ${month} ${date} ${year} - ${hoursWithLeadingZeroIfNecessary}:${minutesWithLeadingZeroIfNecessary}`;
+// h3.innerHTML = `${day}, ${month} ${date} ${year} - ${hoursWithLeadingZeroIfNecessary}:${minutesWithLeadingZeroIfNecessary}`;
