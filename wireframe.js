@@ -40,14 +40,6 @@ const button = document.querySelector("#button-addon2");
 button.addEventListener("click", getCity);
 
 const now = new Date();
-// console.log(now);
-// console.log(now.getHours());
-// console.log(now.getMinutes());
-// console.log(now.getSeconds());
-// console.log(now.getDay());
-// console.log(now.getFullYear());
-// console.log(now.getMonth());
-
 let h3 = document.querySelector("#date");
 
 const date = now.getDate();
