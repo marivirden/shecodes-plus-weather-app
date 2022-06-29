@@ -39,7 +39,7 @@ function getCity() {
 const button = document.querySelector("#button-addon2");
 button.addEventListener("click", getCity);
 
-// const now = new Date();
+const now = new Date();
 // console.log(now);
 // console.log(now.getHours());
 // console.log(now.getMinutes());
@@ -48,31 +48,31 @@ button.addEventListener("click", getCity);
 // console.log(now.getFullYear());
 // console.log(now.getMonth());
 
-// // let h3 = document.querySelector("#date");
+let h3 = document.querySelector("#date");
 
-// const date = now.getDate();
-// const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
-// const day = days[now.getDay()];
-// const year = now.getFullYear();
-// const months = [
-//   "Jan",
-//   "Feb",
-//   "Mar",
-//   "Apr",
-//   "May",
-//   "Jun",
-//   "Jul",
-//   "Aug",
-//   "Sep",
-//   "Oct",
-//   "Nov",
-//   "Dec",
-// ];
-// const month = months[now.getMonth()];
-// const hours = now.getHours();
-// const minutes = now.getMinutes();
+const date = now.getDate();
+const days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+const day = days[now.getDay()];
+const year = now.getFullYear();
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+const month = months[now.getMonth()];
+const hours = now.getHours();
+const minutes = now.getMinutes();
 
-// const hoursWithLeadingZeroIfNecessary = ("0" + hours).slice(-2);
-// const minutesWithLeadingZeroIfNecessary = ("0" + minutes).slice(-2);
+const hoursWithLeadingZeroIfNecessary = ("0" + hours).slice(-2);
+const minutesWithLeadingZeroIfNecessary = ("0" + minutes).slice(-2);
 
-// h3.innerHTML = `${day}, ${month} ${date} ${year} - ${hoursWithLeadingZeroIfNecessary}:${minutesWithLeadingZeroIfNecessary}`;
+h3.innerHTML = `${day}, ${month} ${date} ${year} - ${hoursWithLeadingZeroIfNecessary}:${minutesWithLeadingZeroIfNecessary}`;
