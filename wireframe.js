@@ -15,6 +15,12 @@ function getCurrentTemperature(cityName) {
     const wind = Math.round(response.data.wind.speed);
     const descriptionElement = document.querySelector("#description");
     const description = response.data.weather[0].description;
+    const iconElement = document.querySelector("#icon");
+    iconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+    iconElement.setAttribute("alt", response.data.weather[0].description);
 
     temperatureElement.innerHTML = `${temperature}°F`;
     humidityElement.innerHTML = `${humidity}%`;
