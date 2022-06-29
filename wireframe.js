@@ -42,6 +42,8 @@ function getCity() {
   getCurrentTemperature(city);
 }
 
+getCurrentTemperature("Austin");
+
 const button = document.querySelector("#button-addon2");
 button.addEventListener("click", getCity);
 
