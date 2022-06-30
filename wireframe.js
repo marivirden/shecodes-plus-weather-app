@@ -5,9 +5,10 @@ function getCurrentTemperature(cityName) {
   function showTemperature(response) {
     console.log(response);
 
-    const temperatureElement = document.querySelector("#current-temperature");
+    fahrenheitTemp = Math.round(response.data.main.temp);
+
     const cityElement = document.querySelector("#ciudad");
-    const temperature = Math.round(response.data.main.temp);
+    const temperature = fahrenheitTemp;
     cityElement.innerHTML = response.data.name;
     const humidityElement = document.querySelector("#humidity");
     const humidity = Math.round(response.data.main.humidity);
@@ -22,7 +23,7 @@ function getCurrentTemperature(cityName) {
     );
     iconElement.setAttribute("alt", response.data.weather[0].description);
 
-    temperatureElement.innerHTML = `${temperature}°F`;
+    temperatureElement.innerHTML = temperature;
     humidityElement.innerHTML = `${humidity}%`;
     windElement.innerHTML = `${wind}m/hr`;
     descriptionElement.innerHTML = `${description}`;
@@ -40,6 +41,42 @@ function getCity() {
   currentCity.innerHTML = city;
 
   getCurrentTemperature(city);
+}
+
+function showCelsiusTemperature() {
+  const celsiusTemperature = ((fahrenheitTemp - 32) * 5) / 9;
+  return Math.round(celsiusTemperature);
+}
+
+let isFahrenheit = true;
+
+function toggleTemperature(event) {
+  event.preventDefault();
+
+  toggleTempText();
+
+  if (isFahrenheit) {
+    // change temp value in temperatureElement to celsius
+    temperatureElement.innerHTML = showCelsiusTemperature();
+  } else {
+    // change temp value in temperatureElement to farenheit
+    temperatureElement.innerHTML = fahrenheitTemp;
+  }
+
+  // change isFahrenheit value
+  isFahrenheit = !isFahrenheit;
+}
+
+function toggleTempText() {
+  const celsiusElement = document.querySelector("#celsius-link");
+  const fahrenheitElement = document.querySelector("#fahrenheit-link");
+  if (isFahrenheit) {
+    celsiusElement.innerHTML = "°F";
+    fahrenheitElement.innerHTML = "°C";
+  } else {
+    celsiusElement.innerHTML = "°C";
+    fahrenheitElement.innerHTML = "°F";
+  }
 }
 
 getCurrentTemperature("Austin");
@@ -76,3 +113,10 @@ const hoursWithLeadingZeroIfNecessary = ("0" + hours).slice(-2);
 const minutesWithLeadingZeroIfNecessary = ("0" + minutes).slice(-2);
 
 h3.innerHTML = `${day}, ${month} ${date} ${year} - ${hoursWithLeadingZeroIfNecessary}:${minutesWithLeadingZeroIfNecessary}`;
+
+const temperatureElement = document.querySelector("#current-temperature");
+
+let fahrenheitTemp = null;
+
+const celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", toggleTemperature);

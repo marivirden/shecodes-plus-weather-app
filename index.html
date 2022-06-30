@@ -39,18 +39,25 @@
             <h2 id="ciudad">Austin, TX, USA</h2>
             <h3 id="date">Tuesday Jan 17 2020 - 17:00</h3>
             <p id="description">Cloudy with a chance of meatballs</p>
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="clear"
-              id="icon"
-            />
+            <div id="icon-wrapper">
+              <img
+                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                alt="clear"
+                id="icon"
+              />
+            </div>
           </div>
           <div class="col-6 mt-4">
             <div class="p-4 border border-dark">
-              <h2 id="current-temperature">Today's weather</h2>
-              <div class="col-6">
+              <h2>
+                <span id="current-temperature">Today's weather</span>
+                <span class="units"
+                  ><span id="fahrenheit-link">°F</span> |
+                  <a href="" id="celsius-link">°C</a></span
+                >
+              </h2>
+              <div class="col-12">
                 <ul id="list">
-                  <!-- <li>Precipitation 0%</li> -->
                   <li>Humidity: <span id="humidity"></span></li>
                   <li>Wind: <span id="wind"></span></li>
                 </ul>
