@@ -56,14 +56,11 @@ function toggleTemperature(event) {
   toggleTempText();
 
   if (isFahrenheit) {
-    // change temp value in temperatureElement to celsius
     temperatureElement.innerHTML = showCelsiusTemperature();
   } else {
-    // change temp value in temperatureElement to farenheit
     temperatureElement.innerHTML = fahrenheitTemp;
   }
 
-  // change isFahrenheit value
   isFahrenheit = !isFahrenheit;
 }
 
