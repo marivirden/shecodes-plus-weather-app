@@ -42,9 +42,22 @@ body {
 #current-temperature {
   text-align: center;
   color: #202124;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 400;
   line-height: 26px;
+}
+
+.units {
+  font-size: small;
+}
+
+#celsius-link {
+  text-decoration: none;
+  color: #202124;
+}
+
+#celsius-link:hover {
+  color: rgb(198, 27, 36);
 }
 #list {
   list-style: none;
