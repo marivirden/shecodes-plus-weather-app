@@ -27,6 +27,8 @@ function getCurrentTemperature(cityName) {
     humidityElement.innerHTML = `${humidity}%`;
     windElement.innerHTML = `${wind}m/hr`;
     descriptionElement.innerHTML = `${description}`;
+
+    displayForecast();
   }
 
   axios.get(apiUrl).then(showTemperature);
@@ -110,6 +112,29 @@ const hoursWithLeadingZeroIfNecessary = ("0" + hours).slice(-2);
 const minutesWithLeadingZeroIfNecessary = ("0" + minutes).slice(-2);
 
 h3.innerHTML = `${day}, ${month} ${date} ${year} - ${hoursWithLeadingZeroIfNecessary}:${minutesWithLeadingZeroIfNecessary}`;
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHtml = `<div class="row">`;
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+    <div class="col-2">
+      <div class="border border-dark circular-border">
+        30° <span class="forecast-min">20°</span>
+      </div>
+      <div>${day}</div>
+    </div>
+    `;
+  });
+
+  forecastHtml = forecastHtml + `</div>`;
+
+  forecastElement.innerHTML = forecastHtml;
+}
 
 const temperatureElement = document.querySelector("#current-temperature");
 

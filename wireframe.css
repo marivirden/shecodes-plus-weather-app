@@ -73,6 +73,7 @@ form {
 }
 .row .col-2 {
   text-align: center;
+  font-size: small;
 }
 
 .circular-border {
