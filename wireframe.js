@@ -1,14 +1,15 @@
+const apiKey = "0c5cd3271ca5da27f88448575bac1056";
+
 function getCurrentTemperature(cityName) {
-  const apiKey = "0c5cd3271ca5da27f88448575bac1056";
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`;
 
   function showTemperature(response) {
-    console.log(response);
-
     fahrenheitTemp = Math.round(response.data.main.temp);
 
     const cityElement = document.querySelector("#ciudad");
-    const temperature = fahrenheitTemp;
+    const temperature = isFahrenheit
+      ? fahrenheitTemp
+      : showCelsiusTemperature(fahrenheitTemp);
     cityElement.innerHTML = response.data.name;
     const humidityElement = document.querySelector("#humidity");
     const humidity = Math.round(response.data.main.humidity);
@@ -28,7 +29,7 @@ function getCurrentTemperature(cityName) {
     windElement.innerHTML = `${wind}m/hr`;
     descriptionElement.innerHTML = `${description}`;
 
-    displayForecast();
+    getForecast(response.data.coord);
   }
 
   axios.get(apiUrl).then(showTemperature);
@@ -45,8 +46,19 @@ function getCity() {
   getCurrentTemperature(city);
 }
 
-function showCelsiusTemperature() {
-  const celsiusTemperature = ((fahrenheitTemp - 32) * 5) / 9;
+function getCityViaForm(e) {
+  e.preventDefault();
+  getCity();
+}
+
+function getForecast(coordinates) {
+  const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function showCelsiusTemperature(fahrenheitTemperature) {
+  const celsiusTemperature = ((fahrenheitTemperature - 32) * 5) / 9;
   return Math.round(celsiusTemperature);
 }
 
@@ -55,33 +67,68 @@ let isFahrenheit = true;
 function toggleTemperature(event) {
   event.preventDefault();
 
+  isFahrenheit = !isFahrenheit;
+
+  temperatureElement.innerHTML = isFahrenheit
+    ? showCelsiusTemperature(fahrenheitTemp)
+    : fahrenheitTemp;
+
   toggleTempText();
 
-  if (isFahrenheit) {
-    temperatureElement.innerHTML = showCelsiusTemperature();
-  } else {
-    temperatureElement.innerHTML = fahrenheitTemp;
-  }
-
-  isFahrenheit = !isFahrenheit;
+  toggleForecasts();
 }
 
 function toggleTempText() {
   const celsiusElement = document.querySelector("#celsius-link");
   const fahrenheitElement = document.querySelector("#fahrenheit-link");
-  if (isFahrenheit) {
-    celsiusElement.innerHTML = "°F";
-    fahrenheitElement.innerHTML = "°C";
-  } else {
-    celsiusElement.innerHTML = "°C";
-    fahrenheitElement.innerHTML = "°F";
-  }
+
+  celsiusElement.innerHTML = isFahrenheit ? "°C" : "°F";
+  fahrenheitElement.innerHTML = isFahrenheit ? "°F" : "°C";
+}
+
+function toggleForecasts() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHtml = `<div class="row">`;
+
+  dailyForecasts.forEach(function (dailyForecast) {
+    const currentDateTime = dailyForecast.dt * 1000;
+    const currentDailyForecastDateTime = new Date(currentDateTime);
+    const dailyForecastDay = days[currentDailyForecastDateTime.getDay()];
+    const forecastTemps = dailyForecast.temp;
+    const forecastMax = forecastTemps.max;
+    const forecastMin = forecastTemps.min;
+    const forecastMaxConverted = isFahrenheit
+      ? Math.round(forecastMax)
+      : showCelsiusTemperature(forecastMax);
+    const forecastMinConverted = isFahrenheit
+      ? Math.round(forecastMin)
+      : showCelsiusTemperature(forecastMin);
+
+    forecastHtml =
+      forecastHtml +
+      `
+    <div class="col-2">
+      <div><b>${dailyForecastDay}</b></div>
+      <div>
+        ${forecastMaxConverted}° | <span class="forecast-min">${forecastMinConverted}°</span>
+      </div>
+    </div>
+    `;
+  });
+
+  forecastHtml = forecastHtml + `</div>`;
+
+  forecastElement.innerHTML = forecastHtml;
 }
 
 getCurrentTemperature("Austin");
 
 const button = document.querySelector("#button-addon2");
 button.addEventListener("click", getCity);
+
+const form = document.querySelector("#city-search-form");
+form.addEventListener("submit", getCityViaForm);
 
 const now = new Date();
 let h3 = document.querySelector("#date");
@@ -113,32 +160,20 @@ const minutesWithLeadingZeroIfNecessary = ("0" + minutes).slice(-2);
 
 h3.innerHTML = `${day}, ${month} ${date} ${year} - ${hoursWithLeadingZeroIfNecessary}:${minutesWithLeadingZeroIfNecessary}`;
 
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
+function displayForecast(response) {
+  console.log("data from api call", response.data);
 
-  let forecastHtml = `<div class="row">`;
+  const nextEightDaysOfTemperatures = response.data.daily;
+  dailyForecasts = nextEightDaysOfTemperatures.slice(1, 7);
+  console.log(dailyForecasts);
 
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
-    <div class="col-2">
-      <div class="border border-dark circular-border">
-        30° <span class="forecast-min">20°</span>
-      </div>
-      <div>${day}</div>
-    </div>
-    `;
-  });
-
-  forecastHtml = forecastHtml + `</div>`;
-
-  forecastElement.innerHTML = forecastHtml;
+  toggleForecasts();
 }
 
 const temperatureElement = document.querySelector("#current-temperature");
 
 let fahrenheitTemp = null;
+let dailyForecasts = [];
 
 const celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", toggleTemperature);
