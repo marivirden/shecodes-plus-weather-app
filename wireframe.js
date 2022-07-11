@@ -70,8 +70,8 @@ function toggleTemperature(event) {
   isFahrenheit = !isFahrenheit;
 
   temperatureElement.innerHTML = isFahrenheit
-    ? showCelsiusTemperature(fahrenheitTemp)
-    : fahrenheitTemp;
+    ? fahrenheitTemp
+    : showCelsiusTemperature(fahrenheitTemp);
 
   toggleTempText();
 
